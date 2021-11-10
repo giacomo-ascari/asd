@@ -46,39 +46,39 @@ int main(){
 
     int offset = N;
     for (int i = 0; i < N*2; i++) {
-        //cout << "first: ";
-        //print_interval(intervals[i]);
-        //cout << "| ";
+        cout << "first: ";
+        print_interval(intervals[i]);
+        cout << "| ";
         if (intervals[i].check) {
             for (int j = i; j < N*2; j++) {
                 if (i != j && intervals[j].check) {
-                    //print_interval(intervals[j]);
+                    print_interval(intervals[j]);
                     if (intervals[i].end >= intervals[j].start && intervals[j].end >= intervals[i].start) {
-                        //cout << "Y ";
+                        cout << "Y ";
                         temp.start = min(intervals[i].start, intervals[j].start);
                         temp.end = max(intervals[j].end, intervals[i].end);
                         temp.check = true;
                         intervals[i].check = false;
                         intervals[j].check = false;
                         intervals[offset++] = temp;
-                        //print_interval(temp);
-                        //cout << endl;
+                        print_interval(temp);
+                        cout << endl;
                         break;
                     }
                 }
             }
-            //cout << endl << endl;
+            cout << endl << endl;
         }
     }
 
     vector<interval> v;
     for (int i = 0; i < offset; i++) {
-        //print_interval(intervals[i]);
+        print_interval(intervals[i]);
         if (intervals[i].check) {
             v.push_back(intervals[i]);
         }
     }
-    //cout << endl << endl;
+    cout << endl << endl;
 
     interval best = {0, 0, true};
     sort(v.begin(), v.end(), compare);
